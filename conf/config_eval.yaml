@@ -1,7 +1,7 @@
 wandb_log: true
-wandb_entity: null
+wandb_entity: 'i3ullbum'
 wandb_project: 'llm_meta_cont'
-wandb_key: null
+wandb_key: 'ae076492b5c8d04d5c85accebf040565f86dceab'
 CACHE_DIR: null
 
 defaults:

@@ -1,0 +1,3 @@
+- mode=amortize_encdec_gpt2large
+- dataset=streamingqa
+- mixed_precision=bf16

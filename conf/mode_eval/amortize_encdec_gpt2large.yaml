@@ -47,7 +47,7 @@ layer_num_virtual_tokens: 2
 dropout_p: 0.0
 neftune: False
 noise_alpha: 5.
-no_aggregate: False
+no_aggregate: True
 
 lt_lr: 2.5e-5
 lt_epochs: 0
