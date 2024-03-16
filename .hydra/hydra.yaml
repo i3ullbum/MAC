@@ -132,18 +132,18 @@ hydra:
   runtime:
     version: 1.2.0
     version_base: '1.1'
-    cwd: /home/beomjun/MAC
+    cwd: /root/MAC
     config_sources:
     - path: hydra.conf
       schema: pkg
       provider: hydra
-    - path: /home/beomjun/MAC/conf
+    - path: /root/MAC/conf
       schema: file
       provider: main
     - path: ''
       schema: structured
       provider: schema
-    output_dir: /home/beomjun/MAC
+    output_dir: /root/MAC
     choices:
       dataset: streamingqa
       mode: amortize_encdec_gpt2large

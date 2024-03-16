@@ -1,6 +1,6 @@
 import torch
 from transformers import T5ForConditionalGeneration
-
+import pdb
 
 class T5ForwardWrapper(T5ForConditionalGeneration):
     def __init__(self, config, *inputs, **kwargs):
@@ -48,5 +48,5 @@ class T5ForwardWrapper(T5ForConditionalGeneration):
         # Set device for model parallelism
         if self.model_parallel:
             torch.cuda.set_device(self.encoder.first_device)
-
+        pdb.set_trace()
         return sequence_output

@@ -10,7 +10,7 @@ from datasets import load_dataset
 
 from utils import shuffle_groups, return_k_unique, cycle
 import ast
-
+import pdb
 
 class RangeSampler(Sampler):
     def __init__(self, start_index, end_index):
@@ -24,7 +24,7 @@ class RangeSampler(Sampler):
     def __iter__(self):
         return iter(range(self.start_index, self.end_index))
 
-
+# here
 class TextAndQuestionDataset(Dataset):
     def __init__(self, max_text_len=1024, max_question_len=128, device=None, loc=False, qa_only=False,
                  qa_for_generation=False, max_answer_len=24, tokenizer='gpt2', prompt_samples=-1,
@@ -63,6 +63,7 @@ class TextAndQuestionDataset(Dataset):
         doc_idx = self.retrieval_idx[idx]
         return self.get_text(doc_idx[0])
 
+    # here
     def tok_qa_for_training(self, idx, tokenizer=None):
         question, answer = self.get_qa(idx)
         tokenizer = tokenizer if tokenizer is not None else self.tokenizer
@@ -91,7 +92,7 @@ class TextAndQuestionDataset(Dataset):
         qa_ids = torch.nn.functional.pad(qa_ids, (0, n_pad), value=tokenizer.pad_token_id)
         qa_attention = torch.nn.functional.pad(qa_attention, (0, n_pad), value=0)
         qa_target_ids = torch.nn.functional.pad(qa_target_ids, (0, n_pad), value=-100)
-
+        pdb.set_trace()
         return qa_ids, qa_attention, qa_target_ids
 
     def tok_qa_for_generation(self, idx, tokenizer=None):
@@ -128,6 +129,7 @@ class TextAndQuestionDataset(Dataset):
                 f'answer_ids': tok_answer['input_ids'].squeeze(),
                 f'answer_mask': tok_answer['attention_mask'].squeeze()}
 
+    # here
     def __getitem__(self, idx):
         qa_ids, qa_attention, qa_target_ids = self.tok_qa_for_training(idx)
         if self.tokenizer_amort is not None:
@@ -170,7 +172,7 @@ class TextAndQuestionDataset(Dataset):
 
         return return_dic
 
-
+# here
 class StreamingQADataset(TextAndQuestionDataset):
     def __init__(self, csv_path, downsample_to=-1, **kwargs):
         self.csv_path = csv_path
@@ -178,6 +180,7 @@ class StreamingQADataset(TextAndQuestionDataset):
             self.data_frame = pd.read_csv('./conf/dataset/streaming_test.csv')
             # self.data_frame = self.data_frame.sample(downsample_to)
         else:
+            # here
             self.data_frame = pd.read_csv(csv_path)
             self.data_frame = self.data_frame.sample(frac=1)
         super().__init__(**kwargs)
@@ -317,7 +320,7 @@ class WebTextDataset(Dataset):
                         'attention_mask': text['attention_mask'].squeeze(),
                         'input_ids_amort': text_amort['input_ids'].squeeze()}
 
-
+# here
 def get_dataloader(cfg, tokenizer, tokenizer_amort=None):
     max_text_len = 1024
     num_virtual_tokens = 0
@@ -327,7 +330,8 @@ def get_dataloader(cfg, tokenizer, tokenizer_amort=None):
 
     kwargs_train = {}
     kwargs_val = {}
-
+    
+    # check StreamingQADataset
     if cfg.dataset == 'streamingqa':
         train_dataset = StreamingQADataset(
             cfg.train_path, tokenizer=tokenizer,

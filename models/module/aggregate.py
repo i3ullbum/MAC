@@ -73,4 +73,9 @@ class PassPrompt(nn.Module):
         super().__init__()
 
     def forward(self, question_indices, qa_attention, prompt_set):
-        return prompt_set
+        batch_prompt_set = prompt_set.unsqueeze(0).repeat(
+            question_indices.shape[0], *([1] * len(prompt_set.shape))
+        )
+        batch_prompt_set = rearrange(batch_prompt_set, 'b s n d -> b (s n) d')
+        return batch_prompt_set
+        # return prompt_set

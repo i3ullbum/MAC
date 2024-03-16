@@ -75,7 +75,7 @@ layer_num_virtual_tokens: 2
 dropout_p: 0.0
 neftune: false
 noise_alpha: 5.0
-no_aggregate: false
+no_aggregate: true
 log_stepwise_metrics: false
 use_pretrained: false
 encdec_lora: false

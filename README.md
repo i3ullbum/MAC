@@ -46,6 +46,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m accelerate.commands.launch --config_file 
 # train gpt2-large
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m accelerate.commands.launch --config_file ./conf/accelerate_config.yaml --num_processes=4 main.py mode=amortize_encdec_gpt2large dataset=streamingqa mixed_precision=bf16 
 
+CUDA_VISIBLE_DEVICES=0,1 python -m accelerate.commands.launch --config_file ./conf/accelerate_config.yaml --num_processes=2 main.py mode=amortize_encdec_gpt2large dataset=streamingqa mixed_precision=bf16 
+
 # train gpt2-xl
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m accelerate.commands.launch --config_file ./conf/accelerate_config.yaml --num_processes=4 main.py mode=amortize_encdec_gpt2xl dataset=streamingqa mixed_precision=bf16 
 

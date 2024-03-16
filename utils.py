@@ -244,15 +244,15 @@ def logging_path_check(cfg):
     logdir = log_path + fname
     os.makedirs(logdir, exist_ok=True)
     if len(os.listdir(logdir)) != 0 and cfg.resume_path is None:
-        if cfg.context_size is None:
-            ans = input("log_dir is not empty. All data inside log_dir will be deleted. "
-                        "Will you proceed [y/N]? ")
-            if ans in ['y', 'Y']:
-                shutil.rmtree(logdir)
-            else:
-                exit(1)
-        else:
-            shutil.rmtree(logdir)
+        # if cfg.context_size is None:
+        #     ans = input("log_dir is not empty. All data inside log_dir will be deleted. "
+        #                 "Will you proceed [y/N]? ")
+        #     if ans in ['y', 'Y']:
+        #         shutil.rmtree(logdir)
+        #     else:
+        #         exit(1)
+        # else:
+        shutil.rmtree(logdir)
 
 
 # Function to create a tqdm progress bar for distributed training
