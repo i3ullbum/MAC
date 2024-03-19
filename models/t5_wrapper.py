@@ -48,5 +48,4 @@ class T5ForwardWrapper(T5ForConditionalGeneration):
         # Set device for model parallelism
         if self.model_parallel:
             torch.cuda.set_device(self.encoder.first_device)
-        pdb.set_trace()
         return sequence_output

@@ -12,7 +12,7 @@ num_virtual_tokens: 24
 
 inner_lr: 0.3
 num_inner_steps: 1
-lift_ratio: 0.25
+lift_ratio: 1.0
 
 qencoder_type: 'encdec'
 normalize: False
@@ -45,7 +45,7 @@ layer_num_virtual_tokens: 2
 dropout_p: 0.0
 neftune: False
 noise_alpha: 5.
-no_aggregate: True
+no_aggregate: False
 
 log_stepwise_metrics: False
 

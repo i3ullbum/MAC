@@ -10,13 +10,13 @@ defaults:
   - dataset: streamingqa
 
 seed: 42
-resume: False
+resume: True
 debug: True
 early_stop: False
 no_date: False
 rank: 0
 suffix: null
-resume_path: null
+resume_path: './logs/streamingqa/gpt2-large/240317_amortize_encdec_bs32_adam_lrconstant_with_warmup_outlr1e-05_amortt5-base_tokens24_Ltok2_no_aggregate_gptdrop_mpbf16_seed_42/checkpoints/best_em.pt'
 no_reset: False
 optimizer: 'adam'
 
@@ -53,3 +53,5 @@ gpt_drop: True
 quant_type: null
 quant_compute_dtype: null
 load_from_hf: False
+
+agg_option: 'document-wise'

@@ -4,13 +4,13 @@ wandb_project: llm_meta_cont
 wandb_key: ae076492b5c8d04d5c85accebf040565f86dceab
 CACHE_DIR: null
 seed: 42
-resume: false
+resume: true
 debug: true
 early_stop: false
 no_date: false
 rank: 0
 suffix: null
-resume_path: null
+resume_path: ./logs/streamingqa/gpt2-large/240317_amortize_encdec_bs32_adam_lrconstant_with_warmup_outlr1e-05_amortt5-base_tokens24_Ltok2_no_aggregate_gptdrop_mpbf16_seed_42/checkpoints/best_em.pt
 no_reset: false
 optimizer: adam
 base_model: gpt2-large
@@ -43,6 +43,7 @@ gpt_drop: true
 quant_type: null
 quant_compute_dtype: null
 load_from_hf: false
+agg_option: document-wise
 mode: amortize_encdec
 pretrained_model_amort: t5-base
 question_model_amort: null
@@ -51,7 +52,7 @@ token_dim: null
 num_virtual_tokens: 24
 inner_lr: 0.3
 num_inner_steps: 1
-lift_ratio: 0.25
+lift_ratio: 1.0
 qencoder_type: encdec
 normalize: false
 pretrain_summarization: false
@@ -75,7 +76,7 @@ layer_num_virtual_tokens: 2
 dropout_p: 0.0
 neftune: false
 noise_alpha: 5.0
-no_aggregate: true
+no_aggregate: false
 log_stepwise_metrics: false
 use_pretrained: false
 encdec_lora: false

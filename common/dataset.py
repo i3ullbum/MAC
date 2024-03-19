@@ -92,7 +92,6 @@ class TextAndQuestionDataset(Dataset):
         qa_ids = torch.nn.functional.pad(qa_ids, (0, n_pad), value=tokenizer.pad_token_id)
         qa_attention = torch.nn.functional.pad(qa_attention, (0, n_pad), value=0)
         qa_target_ids = torch.nn.functional.pad(qa_target_ids, (0, n_pad), value=-100)
-        pdb.set_trace()
         return qa_ids, qa_attention, qa_target_ids
 
     def tok_qa_for_generation(self, idx, tokenizer=None):

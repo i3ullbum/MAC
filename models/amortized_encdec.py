@@ -98,6 +98,9 @@ class AmortEncDecAggregateWrapper(nn.Module):
         for param in self.base_lm.parameters():
             param.requires_grad = False
 
+        for param in self.enc_decoder.parameters():
+            param.requires_grad = False
+
     def forward(self, update_batch, train=True):
 
         batch_size = _get_batch_size(update_batch['text_ids'], None)
@@ -121,6 +124,8 @@ class AmortEncDecAggregateWrapper(nn.Module):
             update_batch["gen_q_attn_mask_amort"],
             train=train,
         )
+        # print(context_summary_bank.shape)
+        # import pdb; pdb.set_trace()
 
         if self.config.lift_ratio != 1.0 and train and self.config.no_aggregate:
             context_summary_bank = context_summary_bank[:int(batch_size * self.config.lift_ratio)]
